@@ -15,7 +15,7 @@ export default function TopNav() {
             {token ? (
                 <>
                     {(user?.role === "TEACHER" || user?.role === "STUDENT") && (
-                        <Link href="/my">Моё расписание</Link>
+                    <Link href="/my">Моё расписание</Link>
                     )}
                     {user?.role === "ADMIN" && <Link href="/admin/schedules">Все расписания</Link>}
                     {user?.role === "ADMIN" && <Link href="/admin/schedule">Добавить расписание</Link>}
