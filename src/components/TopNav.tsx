@@ -21,6 +21,7 @@ export default function TopNav() {
                     {user?.role === "ADMIN" && <Link href="/admin/schedule">Добавить расписание</Link>}
                     {user?.role === "ADMIN" && <Link href="/admin/catalog">Справочники</Link>}
                     {user?.role === "ADMIN" && <Link href="/admin/users">Пользователи</Link>}
+                    {user?.role === "ADMIN" && <Link href="/admin/requests">Заявки</Link>}
                     {user?.role === "TEACHER" && <Link href="/teacher/requests">Запросы</Link>}
 
                     <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 12 }}>

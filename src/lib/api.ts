@@ -12,7 +12,7 @@ function getApiBaseUrl(): string {
         return "/api";
     }
     
-    return process.env.BACKEND_URL || "http:
+    return process.env.BACKEND_URL || "http://localhost:8080";
 }
 
 export async function apiFetch<T = any>(path: string, opts: ApiFetchOptions = {}): Promise<T> {
