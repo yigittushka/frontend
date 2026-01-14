@@ -5,42 +5,42 @@ import AuthGuard from "../../../src/components/AuthGuard";
 import { useAuth } from "../../../src/components/AuthProvider";
 import { apiFetch } from "../../../src/lib/api";
 
-// YYYY-MM-DD из Date (по локальному времени)
+
 function toLocalDateInputValue(d) {
     const pad = (n) => String(n).padStart(2, "0");
     return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
 
-// преобразовать "YYYY-MM-DD" в ISO UTC начало дня
+
 function fromDateStartIso(dateStr) {
     const [y, m, d] = dateStr.split("-").map(Number);
     const dt = new Date(Date.UTC(y, m - 1, d, 0, 0, 0, 0));
     return dt.toISOString();
 }
 
-// преобразовать "YYYY-MM-DD" в ISO UTC конец дня
+
 function toDateEndIso(dateStr) {
     const [y, m, d] = dateStr.split("-").map(Number);
     const dt = new Date(Date.UTC(y, m - 1, d, 23, 59, 59, 999));
     return dt.toISOString();
 }
 
-// по умолчанию: сегодня и +7 дней
+
 function addDaysLocal(date, days) {
     const d = new Date(date);
     d.setDate(d.getDate() + days);
     return d;
 }
 
-// Получить понедельник недели для указанной даты
+
 function getMondayOfWeek(date) {
     const d = new Date(date);
     const day = d.getDay();
-    const diff = d.getDate() - day + (day === 0 ? -6 : 1); // Понедельник
+    const diff = d.getDate() - day + (day === 0 ? -6 : 1); 
     return new Date(d.setDate(diff));
 }
 
-// Форматирование времени
+
 function formatTime(isoString) {
     if (!isoString) return "";
     const date = new Date(isoString);
@@ -49,7 +49,7 @@ function formatTime(isoString) {
     return `${hours}:${minutes}`;
 }
 
-// Форматирование даты для заголовка дня
+
 function formatDayHeader(isoString) {
     if (!isoString) return "";
     const date = new Date(isoString);
@@ -61,14 +61,14 @@ function formatDayHeader(isoString) {
     return `${dayName}, ${day}.${month}.${year}`;
 }
 
-// Получить ключ дня для группировки
+
 function getDayKey(isoString) {
     if (!isoString) return "";
     const date = new Date(isoString);
     return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 }
 
-// Проверить, является ли день прошедшим
+
 function isPastDay(isoString) {
     if (!isoString) return false;
     const lessonDate = new Date(isoString);
@@ -78,7 +78,7 @@ function isPastDay(isoString) {
     return lessonDate < today;
 }
 
-// Цвет для типа занятия
+
 function getLessonTypeColor(lessonType) {
     switch (lessonType) {
         case "LECTURE":
@@ -92,7 +92,7 @@ function getLessonTypeColor(lessonType) {
     }
 }
 
-// Русское название типа занятия
+
 function getLessonTypeName(lessonType) {
     switch (lessonType) {
         case "LECTURE":
@@ -126,13 +126,13 @@ function AdminSchedulesInner() {
     const [err, setErr] = useState("");
     const [loading, setLoading] = useState(false);
 
-    // Фильтры
+    
     const [filterGroupId, setFilterGroupId] = useState("");
     const [filterTeacherId, setFilterTeacherId] = useState("");
     const [groups, setGroups] = useState([]);
     const [teachers, setTeachers] = useState([]);
 
-    // Загрузка справочников
+    
     useEffect(() => {
         let alive = true;
         (async () => {
@@ -160,7 +160,7 @@ function AdminSchedulesInner() {
         return { fromIso, toIso };
     }, [fromDate, toDate]);
 
-    // Группировка занятий по дням
+    
     const groupedByDay = useMemo(() => {
         const groups = new Map();
         items.forEach((item) => {
@@ -170,7 +170,7 @@ function AdminSchedulesInner() {
             }
             groups.get(dayKey).push(item);
         });
-        // Сортировка внутри каждого дня по времени начала
+        
         groups.forEach((lessons) => {
             lessons.sort((a, b) => {
                 const timeA = new Date(a.startsAtIso).getTime();
@@ -178,7 +178,7 @@ function AdminSchedulesInner() {
                 return timeA - timeB;
             });
         });
-        // Сортировка дней
+        
         return new Map([...groups.entries()].sort());
     }, [items]);
 
@@ -303,7 +303,7 @@ function AdminSchedulesInner() {
                             value={filterGroupId}
                             onChange={(e) => {
                                 setFilterGroupId(e.target.value);
-                                setFilterTeacherId(""); // Сбрасываем фильтр преподавателя
+                                setFilterTeacherId(""); 
                             }}
                         >
                             <option value="">Все группы</option>
@@ -324,7 +324,7 @@ function AdminSchedulesInner() {
                             value={filterTeacherId}
                             onChange={(e) => {
                                 setFilterTeacherId(e.target.value);
-                                setFilterGroupId(""); // Сбрасываем фильтр группы
+                                setFilterGroupId(""); 
                             }}
                         >
                             <option value="">Все преподаватели</option>

@@ -117,7 +117,7 @@ a:hover {
     opacity: .75;
 }
 
-/* Стили для расписания */
+
 .schedule-container {
     display: flex;
     flex-direction: column;
@@ -327,7 +327,7 @@ textarea {
     resize: vertical;
 }
 
-/* Стили для справочников */
+
 .catalog-card {
     background: white;
     border-radius: 16px;
@@ -398,7 +398,7 @@ textarea {
     line-height: 1.5;
 }
 
-/* Стилизация скроллбара для каталога */
+
 .catalog-card-content::-webkit-scrollbar {
     width: 6px;
 }

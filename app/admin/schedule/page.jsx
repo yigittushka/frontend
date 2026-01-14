@@ -5,7 +5,7 @@ import AuthGuard from "../../../src/components/AuthGuard";
 import { useAuth } from "../../../src/components/AuthProvider";
 import { apiFetch } from "../../../src/lib/api";
 
-// Преобразовать локальную дату и время в ISO UTC
+
 function toIsoDateTime(dateStr, timeStr) {
     if (!dateStr || !timeStr) return "";
     const [year, month, day] = dateStr.split("-").map(Number);
@@ -25,7 +25,7 @@ export default function AdminSchedulePage() {
 function AdminScheduleInner() {
     const { token } = useAuth();
 
-    // Загрузка справочников
+    
     const [groups, setGroups] = useState([]);
     const [streams, setStreams] = useState([]);
     const [subjects, setSubjects] = useState([]);
@@ -36,7 +36,7 @@ function AdminScheduleInner() {
     const [err, setErr] = useState("");
     const [ok, setOk] = useState("");
 
-    // Форма
+    
     const [startDate, setStartDate] = useState("");
     const [startTime, setStartTime] = useState("09:00");
     const [endDate, setEndDate] = useState("");
@@ -45,12 +45,12 @@ function AdminScheduleInner() {
     const [subjectId, setSubjectId] = useState("");
     const [teacherId, setTeacherId] = useState("");
     const [roomId, setRoomId] = useState("");
-    const [targetType, setTargetType] = useState("group"); // "group" or "stream"
+    const [targetType, setTargetType] = useState("group"); 
     const [groupId, setGroupId] = useState("");
     const [streamId, setStreamId] = useState("");
     const [note, setNote] = useState("");
 
-    // Загрузка справочников
+    
     useEffect(() => {
         let alive = true;
         (async () => {
@@ -78,7 +78,7 @@ function AdminScheduleInner() {
         };
     }, [token]);
 
-    // Загрузка студентов при выборе группы
+    
     useEffect(() => {
         if (!groupId || targetType !== "group") {
             setStudents([]);
@@ -102,7 +102,7 @@ function AdminScheduleInner() {
         };
     }, [groupId, targetType, token]);
 
-    // Установка сегодняшней даты по умолчанию
+    
     useEffect(() => {
         const today = new Date();
         const dateStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
@@ -163,7 +163,7 @@ function AdminScheduleInner() {
             });
 
             setOk("Занятие успешно добавлено!");
-            // Очистка формы
+            
             setNote("");
             setGroupId("");
             setStreamId("");
@@ -182,7 +182,7 @@ function AdminScheduleInner() {
             {ok && <div className="ok" style={{ marginBottom: 16 }}>{ok}</div>}
 
             <form onSubmit={handleSubmit} style={{ display: "grid", gap: 16, maxWidth: 800 }}>
-                {/* Дата и время */}
+                {}
                 <div className="row" style={{ alignItems: "flex-start" }}>
                     <div style={{ flex: "1 1 200px" }}>
                         <label className="muted" style={{ display: "block", marginBottom: 4 }}>
@@ -234,7 +234,7 @@ function AdminScheduleInner() {
                     </div>
                 </div>
 
-                {/* Тип занятия, предмет, преподаватель, аудитория */}
+                {}
                 <div className="row" style={{ alignItems: "flex-start" }}>
                     <div style={{ flex: "1 1 200px" }}>
                         <label className="muted" style={{ display: "block", marginBottom: 4 }}>
@@ -310,7 +310,7 @@ function AdminScheduleInner() {
                     </div>
                 </div>
 
-                {/* Группа или поток */}
+                {}
                 <div>
                     <label className="muted" style={{ display: "block", marginBottom: 8 }}>
                         Тип занятия:
@@ -409,7 +409,7 @@ function AdminScheduleInner() {
                     )}
                 </div>
 
-                {/* Примечание */}
+                {}
                 <div>
                     <label className="muted" style={{ display: "block", marginBottom: 4 }}>
                         Примечание

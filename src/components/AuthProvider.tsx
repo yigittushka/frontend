@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
-import * as jwt from "jwt-decode"; // ✅ так работает и для разных версий
+import * as jwt from "jwt-decode"; 
 import { getToken, setToken } from "../lib/auth";
 
 type JwtUser = {
@@ -15,7 +15,7 @@ type JwtUser = {
 type AuthContextValue = {
     token: string;
     user: JwtUser | null;
-    ready: boolean;              // ✅ добавили
+    ready: boolean;              
     login: (t: string) => void;
     logout: () => void;
 };
@@ -24,7 +24,7 @@ const AuthCtx = createContext<AuthContextValue | null>(null);
 
 function decodeToken(t: string): JwtUser | null {
     try {
-        const fn = (jwt as any).jwtDecode || (jwt as any).default; // ✅ поддержка named/default
+        const fn = (jwt as any).jwtDecode || (jwt as any).default; 
         if (!fn) return null;
         return fn(t) as JwtUser;
     } catch {
@@ -41,7 +41,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const t = getToken();
         setTok(t);
         setUser(t ? decodeToken(t) : null);
-        setReady(true); // ✅ важное
+        setReady(true); 
     }, []);
 
     const value = useMemo<AuthContextValue>(() => ({

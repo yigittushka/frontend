@@ -25,12 +25,12 @@ export default function AdminUsersPage() {
 function Inner() {
     const { token } = useAuth();
 
-    // create form
+    
     const [username, setU] = useState("");
     const [password, setP] = useState("");
     const [role, setRole] = useState<"ADMIN" | "TEACHER" | "STUDENT">("STUDENT");
 
-    // list
+    
     const [users, setUsers] = useState<UserRow[]>([]);
     const [err, setErr] = useState("");
     const [ok, setOk] = useState("");
@@ -47,7 +47,7 @@ function Inner() {
 
     useEffect(() => {
         loadUsers();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        
     }, []);
 
     async function submit(e: React.FormEvent) {
@@ -83,7 +83,7 @@ function Inner() {
             setOk("Пользователь удалён");
             await loadUsers();
         } catch (e: any) {
-            // бэк может вернуть 409 если есть связи teacher/student
+            
             setErr(e.message || "Ошибка удаления");
         }
     }

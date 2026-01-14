@@ -5,42 +5,42 @@ import AuthGuard from "../../src/components/AuthGuard";
 import { useAuth } from "../../src/components/AuthProvider";
 import { apiFetch } from "../../src/lib/api";
 
-// YYYY-MM-DD из Date (по локальному времени)
+
 function toLocalDateInputValue(d) {
     const pad = (n) => String(n).padStart(2, "0");
     return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
 
-// преобразовать "YYYY-MM-DD" в ISO UTC начало дня
+
 function fromDateStartIso(dateStr) {
     const [y, m, d] = dateStr.split("-").map(Number);
     const dt = new Date(Date.UTC(y, m - 1, d, 0, 0, 0, 0));
     return dt.toISOString();
 }
 
-// преобразовать "YYYY-MM-DD" в ISO UTC конец дня
+
 function toDateEndIso(dateStr) {
     const [y, m, d] = dateStr.split("-").map(Number);
     const dt = new Date(Date.UTC(y, m - 1, d, 23, 59, 59, 999));
     return dt.toISOString();
 }
 
-// по умолчанию: сегодня и +7 дней
+
 function addDaysLocal(date, days) {
     const d = new Date(date);
     d.setDate(d.getDate() + days);
     return d;
 }
 
-// Получить понедельник недели для указанной даты
+
 function getMondayOfWeek(date) {
     const d = new Date(date);
     const day = d.getDay();
-    const diff = d.getDate() - day + (day === 0 ? -6 : 1); // Понедельник
+    const diff = d.getDate() - day + (day === 0 ? -6 : 1); 
     return new Date(d.setDate(diff));
 }
 
-// Форматирование даты и времени для отображения
+
 function formatDateTime(isoString) {
     if (!isoString) return "";
     const date = new Date(isoString);
@@ -51,7 +51,7 @@ function formatDateTime(isoString) {
     return `${day}.${month} ${hours}:${minutes}`;
 }
 
-// Форматирование только времени
+
 function formatTime(isoString) {
     if (!isoString) return "";
     const date = new Date(isoString);
@@ -60,7 +60,7 @@ function formatTime(isoString) {
     return `${hours}:${minutes}`;
 }
 
-// Форматирование даты для заголовка дня
+
 function formatDayHeader(isoString) {
     if (!isoString) return "";
     const date = new Date(isoString);
@@ -72,14 +72,14 @@ function formatDayHeader(isoString) {
     return `${dayName}, ${day}.${month}.${year}`;
 }
 
-// Получить ключ дня для группировки
+
 function getDayKey(isoString) {
     if (!isoString) return "";
     const date = new Date(isoString);
     return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 }
 
-// Проверить, является ли день прошедшим (до начала сегодняшнего дня)
+
 function isPastDay(isoString) {
     if (!isoString) return false;
     const lessonDate = new Date(isoString);
@@ -89,21 +89,21 @@ function isPastDay(isoString) {
     return lessonDate < today;
 }
 
-// Цвет для типа занятия
+
 function getLessonTypeColor(lessonType) {
     switch (lessonType) {
         case "LECTURE":
-            return "#4A90E2"; // Синий
+            return "#4A90E2"; 
         case "PRACTICE":
-            return "#50C878"; // Зеленый
+            return "#50C878"; 
         case "LAB":
-            return "#FF6B6B"; // Красный
+            return "#FF6B6B"; 
         default:
-            return "#6C757D"; // Серый
+            return "#6C757D"; 
     }
 }
 
-// Русское название типа занятия
+
 function getLessonTypeName(lessonType) {
     switch (lessonType) {
         case "LECTURE":
@@ -143,7 +143,7 @@ function MyScheduleInner() {
         return { fromIso, toIso };
     }, [fromDate, toDate]);
 
-    // Группировка занятий по дням
+    
     const groupedByDay = useMemo(() => {
         const groups = new Map();
         items.forEach((item) => {
@@ -153,7 +153,7 @@ function MyScheduleInner() {
             }
             groups.get(dayKey).push(item);
         });
-        // Сортировка внутри каждого дня по времени начала
+        
         groups.forEach((lessons) => {
             lessons.sort((a, b) => {
                 const timeA = new Date(a.startsAtIso).getTime();
@@ -161,7 +161,7 @@ function MyScheduleInner() {
                 return timeA - timeB;
             });
         });
-        // Сортировка дней
+        
         return new Map([...groups.entries()].sort());
     }, [items]);
 
@@ -180,7 +180,7 @@ function MyScheduleInner() {
             } catch (e) {
                 if (alive) {
                     let errorMsg = e.message || "Ошибка загрузки";
-                    // Если есть детали ошибки, показываем их
+                    
                     if (e.data && e.data.details) {
                         errorMsg = `${errorMsg}: ${e.data.details}`;
                     }
@@ -248,11 +248,11 @@ function MyScheduleInner() {
                     <button
                         className="btn"
                         onClick={() => {
-                            // Получаем текущий понедельник из выбранной даты начала
+                            
                             const [year, month, day] = fromDate.split("-").map(Number);
                             const currentStart = new Date(year, month - 1, day);
                             const currentMonday = getMondayOfWeek(currentStart);
-                            // Переходим на предыдущую неделю
+                            
                             const prevMonday = addDaysLocal(currentMonday, -7);
                             setFromDate(toLocalDateInputValue(prevMonday));
                             setToDate(toLocalDateInputValue(addDaysLocal(prevMonday, 6)));
@@ -263,11 +263,11 @@ function MyScheduleInner() {
                     <button
                         className="btn"
                         onClick={() => {
-                            // Получаем текущий понедельник из выбранной даты начала
+                            
                             const [year, month, day] = fromDate.split("-").map(Number);
                             const currentStart = new Date(year, month - 1, day);
                             const currentMonday = getMondayOfWeek(currentStart);
-                            // Переходим на следующую неделю
+                            
                             const nextMonday = addDaysLocal(currentMonday, 7);
                             setFromDate(toLocalDateInputValue(nextMonday));
                             setToDate(toLocalDateInputValue(addDaysLocal(nextMonday, 6)));

@@ -26,10 +26,10 @@ export default function LoginPage() {
                 body: { username, password },
             });
 
-            // res: { accessToken, role, username }
+            
             login(res.accessToken);
 
-            // ✅ редирект по роли
+            
             if (res.role === "ADMIN") router.replace("/admin/catalog");
             else router.replace("/my");
         } catch (e2) {

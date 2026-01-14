@@ -31,7 +31,7 @@ function TeacherRequestsInner() {
         }
     }
 
-    useEffect(() => { load(); }, []); // eslint-disable-line
+    useEffect(() => { load(); }, []); 
 
     async function submit(e) {
         e.preventDefault();

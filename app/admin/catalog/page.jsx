@@ -71,7 +71,7 @@ function AdminCatalogInner() {
             {err && <div className="error" style={{ marginBottom: 20 }}>{err}</div>}
 
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 24 }}>
-                {/* Группы */}
+                {}
                 <div className="catalog-card">
                     <div className="catalog-card-header" style={{ background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" }}>
                         <span style={{ fontSize: 24, marginRight: 8 }}>👥</span>
@@ -94,7 +94,7 @@ function AdminCatalogInner() {
                     </div>
                 </div>
 
-                {/* Дисциплины */}
+                {}
                 <div className="catalog-card">
                     <div className="catalog-card-header" style={{ background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)" }}>
                         <span style={{ fontSize: 24, marginRight: 8 }}>📖</span>
@@ -117,7 +117,7 @@ function AdminCatalogInner() {
                     </div>
                 </div>
 
-                {/* Аудитории */}
+                {}
                 <div className="catalog-card">
                     <div className="catalog-card-header" style={{ background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)" }}>
                         <span style={{ fontSize: 24, marginRight: 8 }}>🏢</span>

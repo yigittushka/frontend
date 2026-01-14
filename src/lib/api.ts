@@ -5,14 +5,14 @@ export type ApiFetchOptions = {
     headers?: Record<string, string>;
 };
 
-// Получаем базовый URL для API
+
 function getApiBaseUrl(): string {
     if (typeof window !== "undefined") {
-        // В браузере используем относительный путь (через rewrites)
+        
         return "/api";
     }
-    // На сервере используем переменную окружения или дефолтное значение
-    return process.env.BACKEND_URL || "http://localhost:8080";
+    
+    return process.env.BACKEND_URL || "http:
 }
 
 export async function apiFetch<T = any>(path: string, opts: ApiFetchOptions = {}): Promise<T> {
@@ -37,7 +37,7 @@ export async function apiFetch<T = any>(path: string, opts: ApiFetchOptions = {}
         let msg = `HTTP ${res.status}`;
         if (data && typeof data === "object") {
             msg = data.error || data.details || data.message || msg;
-            // Если есть детали, добавляем их к сообщению
+            
             if (data.details && data.error && data.details !== data.error) {
                 msg = `${data.error}: ${data.details}`;
             }
