@@ -9,6 +9,8 @@
 body {
     margin: 0;
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: #f5f6fa;
+    color: #1a1a1a;
 }
 
 a {
@@ -42,6 +44,120 @@ a:hover {
     flex-wrap: wrap;
 }
 
+.top-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f0f0f0;
+    flex-wrap: wrap;
+}
+
+.top-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.top-nav-logo {
+    font-size: 24px;
+}
+
+.top-nav-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.top-nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.top-nav-link {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #555;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.top-nav-link:hover {
+    background: #f0f4ff;
+    color: #667eea;
+}
+
+.top-nav-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.top-nav-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 36px;
+}
+
+.top-nav-user-avatar {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.top-nav-user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.2;
+}
+
+.top-nav-user-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+}
+
+.top-nav-user-role {
+    font-size: 11px;
+    color: #888;
+}
+
+.btn-logout {
+    background: #f8f9fa;
+    color: #666;
+    border: 1px solid #ddd;
+    height: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.btn-logout:hover {
+    background: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
 .btn {
     padding: 10px 16px;
     border: 1px solid #667eea;
@@ -51,6 +167,11 @@ a:hover {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 14px;
 }
 
 .btn:hover:not(:disabled) {
@@ -362,40 +483,202 @@ textarea {
 }
 
 .catalog-card-content {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-height: 500px;
+    max-height: 400px;
     overflow-y: auto;
 }
 
-.catalog-item {
-    padding: 14px 16px;
-    background: #f8f9fa;
-    border-radius: 10px;
-    border: 1px solid #e9ecef;
-    transition: all 0.2s ease;
-}
+/* ===== Catalog Categories ===== */
 
-.catalog-item:hover {
-    background: #f0f4ff;
-    border-color: #667eea;
-    transform: translateX(4px);
-}
-
-.catalog-item-code {
-    font-weight: 700;
+.page-subtitle {
+    color: #666;
+    margin-bottom: 24px;
     font-size: 15px;
-    color: #667eea;
-    margin-bottom: 4px;
-    letter-spacing: 0.3px;
 }
 
-.catalog-item-title {
+.catalog-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.catalog-category-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.catalog-category-card:hover {
+    border-color: #667eea;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+    transform: translateY(-2px);
+}
+
+.catalog-category-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+}
+
+.catalog-category-title {
+    flex: 1;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.catalog-category-arrow {
+    font-size: 20px;
+    color: #ccc;
+    transition: transform 0.2s ease;
+}
+
+.catalog-category-card:hover .catalog-category-arrow {
+    transform: translateX(4px);
+    color: #667eea;
+}
+
+/* ===== Catalog Header ===== */
+
+.catalog-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.catalog-header .page-title {
+    flex: 1;
+    margin: 0;
+}
+
+.btn-back {
+    padding: 8px 16px;
+}
+
+/* ===== Catalog Toolbar ===== */
+
+.catalog-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    background: white;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+}
+
+.catalog-toolbar .catalog-search-input {
+    flex: 1;
+    max-width: 400px;
+}
+
+.catalog-count {
+    color: #888;
     font-size: 14px;
-    color: #555;
-    line-height: 1.5;
+}
+
+/* ===== Catalog List ===== */
+
+.catalog-list-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+}
+
+.catalog-th-id {
+    width: 50px;
+    text-align: center;
+}
+
+.catalog-th-actions {
+    width: 100px;
+    text-align: center;
+}
+
+.catalog-cell-id {
+    text-align: center;
+    color: #888;
+    font-size: 13px;
+}
+
+.catalog-cell-actions {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.form-required {
+    color: #e74c3c;
+    margin-left: 4px;
+}
+
+.modal-sm {
+    max-width: 480px;
+}
+
+/* Catalog table */
+.catalog-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.catalog-th {
+    text-align: left;
+    padding: 10px 12px;
+    background: #f8f9fa;
+    color: #666;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.catalog-row {
+    transition: background 0.15s ease;
+}
+
+.catalog-row:hover {
+    background: #f0f4ff;
+}
+
+.catalog-row:not(:last-child) {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.catalog-cell {
+    padding: 10px 12px;
+    vertical-align: middle;
+}
+
+.catalog-cell-code {
+    font-weight: 600;
+    color: #333;
+}
+
+.catalog-cell-muted {
+    color: #888;
+}
+
+.catalog-cell-number {
+    color: #666;
+    font-variant-numeric: tabular-nums;
 }
 
 
@@ -415,4 +698,2125 @@ textarea {
 
 .catalog-card-content::-webkit-scrollbar-thumb:hover {
     background: #999;
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.catalog-card-icon {
+    font-size: 24px;
+}
+
+.catalog-card-title {
+    margin: 0;
+    color: white;
+    font-size: 16px;
+    flex: 1;
+}
+
+.catalog-collapse-icon {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-left: 8px;
+}
+
+.catalog-card-header {
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.catalog-card-header:hover {
+    filter: brightness(1.1);
+}
+
+.catalog-card-collapsed .catalog-card-header {
+    border-radius: 16px;
+}
+
+/* Search */
+.catalog-search {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.catalog-search-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.catalog-search-input:focus {
+    border-color: #667eea;
+}
+
+.catalog-search-count {
+    font-size: 12px;
+    color: #888;
+    white-space: nowrap;
+}
+
+.catalog-empty {
+    text-align: center;
+    padding: 24px;
+    color: #999;
+}
+
+/* ===== Переключатель видов ===== */
+
+.view-toggle {
+    display: flex;
+    gap: 4px;
+    background: #f0f0f0;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.view-toggle-btn {
+    padding: 8px 16px;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #666;
+    transition: all 0.2s ease;
+}
+
+.view-toggle-btn:hover {
+    background: #e0e0e0;
+}
+
+.view-toggle-btn.active {
+    background: white;
+    color: #333;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.filters-row-between {
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+/* ===== Календарный вид (Outlook-style) ===== */
+
+.calendar-view {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: 60px repeat(7, 1fr);
+    overflow-x: auto;
+}
+
+.calendar-time-header {
+    background: #f8f9fa;
+    border-bottom: 2px solid #e0e0e0;
+    border-right: 1px solid #e9ecef;
+}
+
+.calendar-day-header {
+    background: #f8f9fa;
+    border-bottom: 2px solid #e0e0e0;
+    border-right: 1px solid #e9ecef;
+    padding: 12px 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.calendar-day-header:last-child {
+    border-right: none;
+}
+
+.calendar-day-today {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.calendar-day-name {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.calendar-day-date {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.calendar-time-column {
+    border-right: 1px solid #e9ecef;
+    background: #fafafa;
+}
+
+.calendar-time-slot {
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 4px;
+}
+
+.calendar-time-label {
+    font-size: 11px;
+    color: #888;
+    font-weight: 500;
+}
+
+.calendar-day-column {
+    position: relative;
+    border-right: 1px solid #e9ecef;
+    min-height: 100%;
+}
+
+.calendar-day-column:last-child {
+    border-right: none;
+}
+
+.calendar-column-today {
+    background: rgba(102, 126, 234, 0.03);
+}
+
+.calendar-hour-cell {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.calendar-hour-cell:nth-child(odd) {
+    background: rgba(0,0,0,0.01);
+}
+
+/* Занятия в календаре */
+.calendar-lesson {
+    position: absolute;
+    left: 2px;
+    right: 2px;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    border-left: 4px solid #667eea;
+    padding: 4px 6px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    z-index: 1;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.calendar-lesson:hover {
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: scale(1.02);
+}
+
+.calendar-lesson-draft {
+    background: #fffbf0;
+    border-color: #ffeeba;
+}
+
+.calendar-lesson-conflict {
+    background: #fff5f5;
+    border-color: #f5c6cb;
+}
+
+.calendar-lesson-confirmed {
+    background: #f0fff4;
+    border-color: #c3e6cb;
+}
+
+.calendar-lesson-time {
+    font-size: 10px;
+    color: #888;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.calendar-lesson-subject {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.calendar-lesson-info {
+    font-size: 10px;
+    color: #666;
+    margin-top: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.calendar-lesson-info span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.calendar-lesson-actions {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    display: flex;
+    gap: 2px;
+    background: rgba(255,255,255,0.95);
+    padding: 2px;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.cal-btn {
+    width: 22px;
+    height: 22px;
+    border: none;
+    background: #f5f5f5;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease;
+}
+
+.cal-btn:hover {
+    background: #e0e0e0;
+}
+
+.cal-btn-confirm:hover { background: #d4edda; }
+.cal-btn-edit:hover { background: #cce5ff; }
+.cal-btn-delete:hover { background: #f8d7da; }
+
+/* ===== Статусы занятий ===== */
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.status-draft {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffc107;
+}
+
+.status-conflict {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #dc3545;
+    animation: pulse-conflict 2s infinite;
+}
+
+.status-confirmed {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #28a745;
+}
+
+@keyframes pulse-conflict {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Карточка занятия со статусом */
+.lesson-card-draft {
+    border-left: 4px solid #ffc107 !important;
+    background: linear-gradient(to right, #fffbf0 0%, white 20%) !important;
+}
+
+.lesson-card-conflict {
+    border-left: 4px solid #dc3545 !important;
+    background: linear-gradient(to right, #fff5f5 0%, white 20%) !important;
+    box-shadow: 0 0 0 1px rgba(220, 53, 69, 0.2);
+}
+
+.lesson-card-confirmed {
+    border-left: 4px solid #28a745 !important;
+}
+
+/* Информация о конфликте */
+.conflict-info {
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: #fff5f5;
+    border-radius: 8px;
+    border-left: 4px solid #dc3545;
+    font-size: 13px;
+    color: #721c24;
+}
+
+.conflict-info::before {
+    content: "⚠️ ";
+}
+
+/* Панель занятости аудиторий */
+.room-availability {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.room-availability-header {
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.room-slot {
+    padding: 8px 12px;
+    margin: 4px;
+    border-radius: 8px;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.room-slot-free {
+    background: #d4edda;
+    color: #155724;
+}
+
+.room-slot-busy {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Чекбоксы для режимов сохранения */
+.save-options {
+    display: flex;
+    gap: 20px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin-top: 16px;
+}
+
+.save-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.save-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.save-option-label {
+    font-size: 14px;
+    color: #555;
+}
+
+.save-option-hint {
+    font-size: 12px;
+    color: #888;
+    margin-left: 26px;
+    margin-top: 2px;
+}
+
+/* Фильтр по статусу */
+.status-filter {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.status-filter-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    background: white;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.status-filter-btn:hover {
+    border-color: #667eea;
+    color: #667eea;
+}
+
+.status-filter-btn.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.status-filter-btn.active-draft {
+    background: #ffc107;
+    color: #856404;
+    border-color: #ffc107;
+}
+
+.status-filter-btn.active-conflict {
+    background: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.status-filter-btn.active-confirmed {
+    background: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+/* ===== Новые компоненты UI ===== */
+
+/* LessonCard */
+.lesson-card {
+    display: flex;
+    background: #f8f9fa;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e9ecef;
+    transition: all 0.2s ease;
+}
+
+.lesson-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.lesson-card-type {
+    min-width: 100px;
+    padding: 16px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.lesson-card-content {
+    flex: 1;
+    padding: 12px 16px;
+}
+
+.lesson-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4px;
+}
+
+.lesson-card-time {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+}
+
+.lesson-card-subject {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.lesson-card-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 13px;
+    color: #666;
+    margin-top: 4px;
+}
+
+.lesson-card-note {
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: #f0f4ff;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #555;
+    border-left: 3px solid #667eea;
+}
+
+.lesson-card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    justify-content: center;
+}
+
+/* Icon buttons */
+.btn-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+    transform: scale(1.1);
+}
+
+.btn-icon-primary {
+    border-color: #667eea;
+}
+
+.btn-icon-primary:hover {
+    background: #667eea;
+}
+
+.btn-icon-success {
+    border-color: #28a745;
+}
+
+.btn-icon-success:hover {
+    background: #28a745;
+}
+
+.btn-icon-danger {
+    border-color: #dc3545;
+}
+
+.btn-icon-danger:hover {
+    background: #dc3545;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 16px;
+}
+
+.breadcrumb-link {
+    color: #667eea;
+}
+
+.breadcrumb-link:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb-separator {
+    color: #ccc;
+    margin: 0 4px;
+}
+
+.breadcrumb-current {
+    color: #333;
+    font-weight: 500;
+}
+
+/* Date Range Picker */
+.date-range-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-end;
+}
+
+.date-range-inputs {
+    display: flex;
+    gap: 16px;
+}
+
+.date-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.date-label {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+}
+
+.date-range-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+/* Status badge small */
+.status-badge-sm {
+    padding: 2px 8px;
+    font-size: 10px;
+}
+
+/* Text utilities */
+.text-muted {
+    color: #999;
+    font-style: italic;
+}
+
+/* ===== Responsive Design ===== */
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 16px;
+    }
+    
+    h2 {
+        font-size: 24px;
+    }
+    
+    h3 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Navigation */
+    .top-nav {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    
+    .top-nav-brand {
+        justify-content: center;
+    }
+    
+    .top-nav-menu {
+        justify-content: center;
+        gap: 2px;
+    }
+    
+    .top-nav-link {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+    
+    .top-nav-actions {
+        margin-left: 0;
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .top-nav-user-info {
+        display: none;
+    }
+    
+    .row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .row a {
+        text-align: center;
+    }
+    
+    /* Cards */
+    .card {
+        padding: 16px;
+        border-radius: 12px;
+    }
+    
+    /* Schedule */
+    .schedule-lesson {
+        flex-direction: column;
+    }
+    
+    .schedule-lesson-type {
+        min-width: 100%;
+        padding: 12px;
+    }
+    
+    .schedule-lesson-content {
+        padding: 12px;
+    }
+    
+    .schedule-lesson-details {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .schedule-day-header {
+        padding: 14px 16px;
+        font-size: 16px;
+    }
+    
+    /* Lesson Card */
+    .lesson-card {
+        flex-direction: column;
+    }
+    
+    .lesson-card-type {
+        min-width: 100%;
+        padding: 10px;
+    }
+    
+    .lesson-card-actions {
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: 8px 12px;
+        border-top: 1px solid #e9ecef;
+    }
+    
+    /* Date picker */
+    .date-range-picker {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .date-range-inputs {
+        flex-direction: column;
+    }
+    
+    .date-range-buttons {
+        flex-wrap: wrap;
+    }
+    
+    /* Forms */
+    .save-options {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    /* Status filter */
+    .status-filter {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+    }
+    
+    .status-filter-btn {
+        white-space: nowrap;
+    }
+    
+    /* Tables */
+    .table {
+        font-size: 13px;
+    }
+    
+    .table th, .table td {
+        padding: 6px;
+    }
+    
+    /* Catalog */
+    .catalog-card-header {
+        padding: 16px;
+    }
+    
+    .catalog-card-content {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 12px;
+    }
+    
+    h2 {
+        font-size: 20px;
+    }
+    
+    h3 {
+        font-size: 18px;
+    }
+    
+    .btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
+    .btn-sm {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    
+    .input, .textarea, select {
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+    
+    /* Hide less important info on mobile */
+    .lesson-card-details span:nth-child(3) {
+        display: none;
+    }
+    
+    .schedule-lesson-details span:nth-child(3) {
+        display: none;
+    }
+    
+    /* Breadcrumbs */
+    .breadcrumbs {
+        font-size: 12px;
+    }
+}
+
+/* ===== Print Styles ===== */
+
+@media print {
+    body {
+        background: white;
+    }
+    
+    .top-nav,
+    .btn,
+    .status-filter,
+    .date-range-picker,
+    .lesson-card-actions {
+        display: none !important;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    .schedule-day {
+        break-inside: avoid;
+    }
+}
+
+/* ===== Page Layout ===== */
+
+.page-container {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 24px 0;
+}
+
+/* ===== Stats Cards ===== */
+
+.stats-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    border-radius: 12px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stat-card-draft {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+}
+
+.stat-card-draft .stat-card-count,
+.stat-card-draft .stat-card-label {
+    color: #856404;
+}
+
+.stat-card-conflict {
+    background: #f8d7da;
+    border: 1px solid #dc3545;
+}
+
+.stat-card-conflict .stat-card-count,
+.stat-card-conflict .stat-card-label {
+    color: #721c24;
+}
+
+.stat-card-confirmed {
+    background: #d4edda;
+    border: 1px solid #28a745;
+}
+
+.stat-card-confirmed .stat-card-count,
+.stat-card-confirmed .stat-card-label {
+    color: #155724;
+}
+
+.stat-card-icon {
+    font-size: 20px;
+}
+
+.stat-card-count {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.stat-card-label {
+    font-size: 12px;
+}
+
+/* ===== Filters ===== */
+
+.filters-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 24px;
+    border: 1px solid #e0e0e0;
+}
+
+.filters-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-end;
+    margin-bottom: 16px;
+}
+
+.filters-row:last-child {
+    margin-bottom: 0;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.filter-group-wide {
+    min-width: 180px;
+}
+
+.filter-label {
+    display: block;
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+}
+
+.week-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+/* ===== Loading & Empty States ===== */
+
+.loading-state {
+    padding: 48px;
+    text-align: center;
+    color: #666;
+}
+
+.empty-state {
+    padding: 64px;
+    text-align: center;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e0e0e0;
+    color: #666;
+}
+
+.empty-state-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+/* ===== Schedule Day Header with Count ===== */
+
+.schedule-day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.schedule-day-count {
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+/* ===== Lesson Header ===== */
+
+.schedule-lesson-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4px;
+}
+
+/* ===== Lesson Actions ===== */
+
+.lesson-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    justify-content: center;
+}
+
+/* ===== Modal ===== */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow: auto;
+}
+
+.modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.modal-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: #f0f0f0;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    background: #e0e0e0;
+}
+
+.modal-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+/* ===== Forms ===== */
+
+.form-row {
+    display: grid;
+    gap: 16px;
+}
+
+.form-row-2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+.form-row-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-label {
+    display: block;
+    font-size: 13px;
+    color: #555;
+    margin: 0;
+}
+
+.form-label-hint {
+    color: #999;
+    font-weight: 400;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 8px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+/* ===== Button Variants ===== */
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    font-weight: 600;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, #5a6fd6 0%, #6a4190 100%);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #333;
+    border: none;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: #e0e0e0;
+}
+
+/* ===== Responsive Forms ===== */
+
+/* ===== Schedule Form ===== */
+
+.lesson-form {
+    display: grid;
+    gap: 20px;
+    max-width: 900px;
+}
+
+.card-title {
+    margin: 0 0 20px 0;
+    font-size: 22px;
+}
+
+.form-row-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Time Slots */
+.time-slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.time-slot-btn {
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.time-slot-btn:hover {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
+
+.time-slot-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: transparent;
+}
+
+.time-slot-time {
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+/* Room Availability */
+.room-availability-close {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.room-availability-content {
+    padding: 16px;
+}
+
+.room-free {
+    color: #28a745;
+    padding: 8px;
+}
+
+.room-slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* Students Preview */
+.students-preview {
+    margin-top: 12px;
+    padding: 12px;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+.students-preview-title {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #666;
+}
+
+.students-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.student-tag {
+    padding: 4px 8px;
+    background: white;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+/* Conflict Check */
+.conflict-check-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.conflict-result {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.conflict-result.has-conflicts {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.conflict-result.no-conflicts {
+    background: #d4edda;
+    color: #155724;
+}
+
+.conflicts-details {
+    background: #fff5f5;
+    border: 1px solid #dc3545;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.conflicts-title {
+    font-weight: 600;
+    color: #721c24;
+    margin-bottom: 12px;
+}
+
+.conflict-item {
+    padding: 8px 12px;
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    border-left: 4px solid #dc3545;
+}
+
+.conflict-type {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: white;
+    font-size: 11px;
+    margin-right: 8px;
+}
+
+.conflict-type-room {
+    background: #ffc107;
+}
+
+.conflict-type-teacher {
+    background: #17a2b8;
+}
+
+.conflict-type-group {
+    background: #6c757d;
+}
+
+.conflicts-hint {
+    margin-top: 12px;
+    font-size: 13px;
+    color: #666;
+}
+
+/* Submit Button Variants */
+.btn-submit {
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+}
+
+.btn-draft {
+    background: #ffc107;
+    color: #856404;
+}
+
+.btn-draft:hover:not(:disabled) {
+    background: #e0a800;
+}
+
+.btn-force {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-force:hover:not(:disabled) {
+    background: #c82333;
+}
+
+/* ===== Rooms Page ===== */
+
+.rooms-page {
+    max-width: 1400px;
+}
+
+.rooms-stats {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.rooms-stat {
+    border-radius: 12px;
+    padding: 16px 24px;
+}
+
+.rooms-stat-total {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.rooms-stat-free {
+    background: #d4edda;
+    border: 1px solid #28a745;
+}
+
+.rooms-stat-free .rooms-stat-value,
+.rooms-stat-free .rooms-stat-label {
+    color: #155724;
+}
+
+.rooms-stat-busy {
+    background: #f8d7da;
+    border: 1px solid #dc3545;
+}
+
+.rooms-stat-busy .rooms-stat-value,
+.rooms-stat-busy .rooms-stat-label {
+    color: #721c24;
+}
+
+.rooms-stat-occupancy {
+    background: #e2e3e5;
+}
+
+.rooms-stat-occupancy .rooms-stat-value,
+.rooms-stat-occupancy .rooms-stat-label {
+    color: #383d41;
+}
+
+.rooms-stat-confirmed {
+    background: #e3f2fd;
+    border: 1px solid #2196f3;
+}
+
+.rooms-stat-confirmed .rooms-stat-value,
+.rooms-stat-confirmed .rooms-stat-label {
+    color: #0c5460;
+}
+
+.rooms-stat-draft {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+}
+
+.rooms-stat-draft .rooms-stat-value,
+.rooms-stat-draft .rooms-stat-label {
+    color: #856404;
+}
+
+.rooms-stat-conflict {
+    background: #f8d7da;
+    border: 1px solid #dc3545;
+}
+
+.rooms-stat-conflict .rooms-stat-value,
+.rooms-stat-conflict .rooms-stat-label {
+    color: #721c24;
+}
+
+.rooms-stat-active {
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.5);
+    transform: scale(1.05);
+}
+
+.filter-active-hint {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: #f0f4ff;
+    border: 1px solid #667eea;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #667eea;
+}
+
+.rooms-stat-value {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.rooms-stat-label {
+    font-size: 13px;
+}
+
+/* Rooms Table */
+.rooms-table-wrapper {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e0e0e0;
+    overflow: auto;
+}
+
+.rooms-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.rooms-table thead tr {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.rooms-table-header-room {
+    padding: 16px 12px;
+    color: white;
+    text-align: left;
+    font-weight: 600;
+    position: sticky;
+    left: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    z-index: 1;
+}
+
+.rooms-table-header-slot {
+    padding: 12px 8px;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.rooms-table-slot-time {
+    opacity: 0.8;
+    font-size: 11px;
+}
+
+.rooms-table tbody tr {
+    border-bottom: 1px solid #e9ecef;
+}
+
+.rooms-table-room {
+    padding: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    position: sticky;
+    left: 0;
+    background: white;
+    z-index: 1;
+}
+
+.rooms-table-room:hover {
+    background: #f8f9fa;
+}
+
+.room-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.room-icon {
+    font-size: 16px;
+}
+
+.room-code {
+    font-weight: 600;
+}
+
+.room-details {
+    font-size: 11px;
+    color: #888;
+    font-weight: 400;
+}
+
+.rooms-table-cell {
+    padding: 4px;
+    text-align: center;
+    vertical-align: top;
+}
+
+/* Slot States */
+.slot-free {
+    background: #d4edda;
+    border-radius: 8px;
+    padding: 16px 6px;
+    font-size: 16px;
+    color: #155724;
+}
+
+.slot-busy {
+    border-radius: 8px;
+    padding: 8px 6px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.slot-confirmed {
+    background: #e3f2fd;
+    border: 1px solid #2196f3;
+}
+
+.slot-draft {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+}
+
+.slot-conflict {
+    background: #f8d7da;
+    border: 1px solid #dc3545;
+}
+
+.slot-subject {
+    font-weight: 600;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80px;
+}
+
+.slot-target {
+    color: #666;
+    font-size: 10px;
+    margin-top: 2px;
+}
+
+.slot-dimmed {
+    opacity: 0.3;
+}
+
+.slot-highlight {
+    animation: pulse-highlight 1s ease-in-out;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.5);
+}
+
+@keyframes pulse-highlight {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Legend */
+.rooms-legend {
+    margin-top: 24px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #666;
+}
+
+.legend-box {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.legend-free {
+    background: #d4edda;
+    color: #155724;
+}
+
+.legend-confirmed {
+    background: #e3f2fd;
+    border: 1px solid #2196f3;
+}
+
+.legend-draft {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+}
+
+.legend-conflict {
+    background: #f8d7da;
+    border: 1px solid #dc3545;
+}
+
+.legend-item-clickable {
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.legend-item-clickable:hover {
+    background: #f0f4ff;
+}
+
+.legend-item-active {
+    background: #e8f0fe;
+    box-shadow: 0 0 0 2px #667eea;
+}
+
+/* Room Modal */
+.room-modal {
+    max-width: 600px;
+}
+
+.room-modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+    border-radius: 20px 20px 0 0;
+}
+
+.room-modal-header h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.room-modal-subtitle {
+    font-size: 13px;
+    opacity: 0.9;
+    margin-top: 4px;
+}
+
+.modal-close-light {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.modal-close-light:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.room-schedule-title {
+    margin: 0 0 16px 0;
+    font-size: 16px;
+}
+
+.room-free-day {
+    padding: 32px;
+    text-align: center;
+    background: #d4edda;
+    border-radius: 12px;
+    color: #155724;
+}
+
+.room-free-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.room-schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.room-lesson {
+    padding: 16px;
+    border-radius: 12px;
+}
+
+.room-lesson-confirmed {
+    background: #f8f9fa;
+    border-left: 4px solid #28a745;
+}
+
+.room-lesson-draft {
+    background: #fffbf0;
+    border-left: 4px solid #ffc107;
+}
+
+.room-lesson-conflict {
+    background: #fff5f5;
+    border-left: 4px solid #dc3545;
+}
+
+.room-lesson-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.room-lesson-time {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.room-lesson-subject {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.room-lesson-details {
+    font-size: 13px;
+    color: #666;
+    margin-top: 4px;
+}
+
+/* ===== My Schedule Page ===== */
+
+.my-schedule-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-end;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+    .my-schedule-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .my-schedule-filters .week-buttons {
+        justify-content: center;
+    }
+}
+
+/* ===== Users Page ===== */
+
+.users-stats {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.users-stat {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 16px 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.users-stat:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.users-stat-admin {
+    border-color: #ffc107;
+    background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+}
+
+.users-stat-teacher {
+    border-color: #17a2b8;
+    background: linear-gradient(135deg, #e8f7f9 0%, #d1ecf1 100%);
+}
+
+.users-stat-student {
+    border-color: #28a745;
+    background: linear-gradient(135deg, #e8f5ea 0%, #d4edda 100%);
+}
+
+.users-stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+}
+
+.users-stat-label {
+    font-size: 13px;
+    color: #666;
+}
+
+/* Users Form */
+.users-form-card {
+    margin-bottom: 24px;
+}
+
+.users-form-title {
+    margin: 0 0 16px 0;
+    font-size: 16px;
+}
+
+.users-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 16px;
+    align-items: flex-end;
+}
+
+/* Users List */
+.users-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.users-list-header h4 {
+    margin: 0;
+}
+
+.users-list-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.users-table-wrapper {
+    overflow-x: auto;
+}
+
+.users-table {
+    width: 100%;
+}
+
+.users-table th,
+.users-table td {
+    white-space: nowrap;
+}
+
+.user-disabled {
+    opacity: 0.6;
+    background: #f5f5f5;
+}
+
+.user-id {
+    color: #999;
+    font-size: 13px;
+}
+
+.user-username {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.user-avatar {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.user-date {
+    color: #666;
+    font-size: 13px;
+}
+
+/* Role Badge */
+.role-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.role-admin {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.role-teacher {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.role-student {
+    background: #d4edda;
+    color: #155724;
+}
+
+/* Status Indicator */
+.status-indicator {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.status-indicator:hover {
+    transform: scale(1.05);
+}
+
+.status-active {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-inactive {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+@media (max-width: 768px) {
+    .users-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .users-stats {
+        flex-direction: column;
+    }
+    
+    .users-list-header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-container {
+        padding: 16px;
+    }
+    
+    .form-row-2,
+    .form-row-3,
+    .form-row-4 {
+        grid-template-columns: 1fr;
+    }
+    
+    .time-slots {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+    }
+    
+    .conflict-check-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filters-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-group-wide {
+        min-width: auto;
+    }
+    
+    .week-buttons {
+        flex-wrap: wrap;
+    }
+    
+    .stats-row {
+        flex-direction: column;
+    }
+    
+    .stat-card {
+        justify-content: center;
+    }
+    
+    .lesson-actions {
+        flex-direction: row;
+        justify-content: flex-end;
+        border-top: 1px solid #e9ecef;
+    }
+    
+    .modal-content {
+        max-width: 100%;
+        border-radius: 16px 16px 0 0;
+        max-height: 95vh;
+    }
 }

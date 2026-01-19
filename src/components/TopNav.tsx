@@ -2,40 +2,85 @@
 
 import Link from "next/link";
 import { useAuth } from "./AuthProvider";
+import { USER_ROLE_LABELS } from "../lib/constants";
 
 export default function TopNav() {
     const { token, user, logout } = useAuth();
 
+    const isAdmin = user?.role === "ADMIN";
+    const isTeacher = user?.role === "TEACHER";
+    const isStudent = user?.role === "STUDENT";
+
     return (
-        <div className="row" style={{ marginBottom: 20, paddingBottom: 16, borderBottom: "2px solid #f0f0f0" }}>
-            <h2 style={{ margin: 0, background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-                Univer Timetable
-            </h2>
+        <nav className="top-nav">
+            <Link href="/" className="top-nav-brand">
+                <span className="top-nav-logo">📅</span>
+                <span className="top-nav-title">Univer Timetable</span>
+            </Link>
 
-            {token ? (
-                <>
-                    {(user?.role === "TEACHER" || user?.role === "STUDENT") && (
-                    <Link href="/my">Моё расписание</Link>
+            {token && (
+                <div className="top-nav-menu">
+                    {(isTeacher || isStudent) && (
+                        <Link href="/my" className="top-nav-link">
+                            📋 Моё расписание
+                        </Link>
                     )}
-                    {user?.role === "ADMIN" && <Link href="/admin/schedules">Все расписания</Link>}
-                    {user?.role === "ADMIN" && <Link href="/admin/schedule">Добавить расписание</Link>}
-                    {user?.role === "ADMIN" && <Link href="/admin/catalog">Справочники</Link>}
-                    {user?.role === "ADMIN" && <Link href="/admin/users">Пользователи</Link>}
-                    {user?.role === "ADMIN" && <Link href="/admin/requests">Заявки</Link>}
-                    {user?.role === "TEACHER" && <Link href="/teacher/requests">Запросы</Link>}
+                    
+                    {isAdmin && (
+                        <>
+                            <Link href="/admin/schedules" className="top-nav-link">
+                                📅 Расписание
+                            </Link>
+                            <Link href="/admin/schedule" className="top-nav-link">
+                                ➕ Добавить
+                            </Link>
+                            <Link href="/admin/rooms" className="top-nav-link">
+                                🚪 Аудитории
+                            </Link>
+                            <Link href="/admin/catalog" className="top-nav-link">
+                                📚 Справочники
+                            </Link>
+                            <Link href="/admin/users" className="top-nav-link">
+                                👤 Пользователи
+                            </Link>
+                            <Link href="/admin/requests" className="top-nav-link">
+                                📝 Заявки
+                            </Link>
+                        </>
+                    )}
+                    
+                    {isTeacher && (
+                        <Link href="/teacher/requests" className="top-nav-link">
+                            📝 Мои запросы
+                        </Link>
+                    )}
+                </div>
+            )}
 
-                    <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 12 }}>
-                        <div className="muted" style={{ fontSize: 14 }}>
-                            {user?.username} <span style={{ color: "#999" }}>/</span> {user?.role}
+            <div className="top-nav-actions">
+                {token ? (
+                    <>
+                        <div className="top-nav-user">
+                            <span className="top-nav-user-avatar">
+                                {(user?.username || user?.sub)?.[0]?.toUpperCase() || "?"}
+                            </span>
+                            <div className="top-nav-user-info">
+                                <span className="top-nav-user-name">{user?.username || user?.sub || "Пользователь"}</span>
+                                <span className="top-nav-user-role">
+                                    {user?.role ? USER_ROLE_LABELS[user.role as keyof typeof USER_ROLE_LABELS] || user.role : ""}
+                                </span>
+                            </div>
                         </div>
-                        <button className="btn" onClick={logout} style={{ padding: "8px 16px", fontSize: 14 }}>
+                        <button className="btn btn-sm btn-logout" onClick={logout}>
                             Выйти
                         </button>
-                    </div>
-                </>
-            ) : (
-                <div style={{ marginLeft: "auto" }} className="muted">не авторизован</div>
-            )}
-        </div>
+                    </>
+                ) : (
+                    <Link href="/login" className="btn btn-sm">
+                        Войти
+                    </Link>
+                )}
+            </div>
+        </nav>
     );
 }
