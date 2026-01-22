@@ -7,7 +7,7 @@ import { getToken, setToken } from "../lib/auth";
 type JwtUser = {
     sub: string;
     username?: string;
-    role?: "ADMIN" | "TEACHER" | "STUDENT";
+    role?: "ADMIN" | "METHODIST" | "TEACHER" | "STUDENT";
     exp?: number;
     iat?: number;
 };
