@@ -8,6 +8,7 @@ export default function TopNav() {
     const { token, user, logout } = useAuth();
 
     const isAdmin = user?.role === "ADMIN";
+    const isMethodist = user?.role === "METHODIST";
     const isTeacher = user?.role === "TEACHER";
     const isStudent = user?.role === "STUDENT";
 
@@ -26,27 +27,32 @@ export default function TopNav() {
                         </Link>
                     )}
                     
-                    {isAdmin && (
+                    {/* Методист - расписание, справочники, заявки */}
+                    {isMethodist && (
                         <>
-                            <Link href="/admin/schedules" className="top-nav-link">
+                            <Link href="/methodist/schedules" className="top-nav-link">
                                 📅 Расписание
                             </Link>
-                            <Link href="/admin/schedule" className="top-nav-link">
+                            <Link href="/methodist/schedule" className="top-nav-link">
                                 ➕ Добавить
                             </Link>
-                            <Link href="/admin/rooms" className="top-nav-link">
+                            <Link href="/methodist/rooms" className="top-nav-link">
                                 🚪 Аудитории
                             </Link>
-                            <Link href="/admin/catalog" className="top-nav-link">
+                            <Link href="/methodist/catalog" className="top-nav-link">
                                 📚 Справочники
                             </Link>
-                            <Link href="/admin/users" className="top-nav-link">
-                                👤 Пользователи
-                            </Link>
-                            <Link href="/admin/requests" className="top-nav-link">
+                            <Link href="/methodist/requests" className="top-nav-link">
                                 📝 Заявки
                             </Link>
                         </>
+                    )}
+                    
+                    {/* Администратор - только управление пользователями */}
+                    {isAdmin && (
+                        <Link href="/admin/users" className="top-nav-link">
+                            👤 Пользователи
+                        </Link>
                     )}
                     
                     {isTeacher && (

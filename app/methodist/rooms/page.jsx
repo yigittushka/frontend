@@ -15,9 +15,9 @@ import {
 import { TIME_SLOTS, LESSON_STATUS_INFO, ROOM_TYPE_LABELS } from "../../../src/lib/constants";
 import { Breadcrumbs } from "../../../src/components/ui";
 
-export default function AdminRoomsPage() {
+export default function MethodistRoomsPage() {
     return (
-        <AuthGuard roles={["ADMIN"]}>
+        <AuthGuard roles={["METHODIST"]}>
             <RoomsAvailabilityInner />
         </AuthGuard>
     );
@@ -177,7 +177,7 @@ function RoomsAvailabilityInner() {
         <div className="page-container rooms-page">
             <Breadcrumbs items={[
                 { label: "Главная", href: "/" },
-                { label: "Админ" },
+                { label: "Методист" },
                 { label: "Аудитории" }
             ]} />
             

@@ -12,7 +12,7 @@ import { Breadcrumbs } from "../../../src/components/ui";
 type UserRow = {
     id: number;
     username: string;
-    role: "ADMIN" | "TEACHER" | "STUDENT";
+    role: "ADMIN" | "METHODIST" | "TEACHER" | "STUDENT";
     enabled: boolean;
     createdAt: string;
 };
@@ -30,7 +30,7 @@ function Inner() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [role, setRole] = useState<"ADMIN" | "TEACHER" | "STUDENT">("STUDENT");
+    const [role, setRole] = useState<"ADMIN" | "METHODIST" | "TEACHER" | "STUDENT">("STUDENT");
 
     const [users, setUsers] = useState<UserRow[]>([]);
     const [loading, setLoading] = useState(false);
@@ -118,6 +118,7 @@ function Inner() {
     const stats = {
         total: users.length,
         admins: users.filter(u => u.role === "ADMIN").length,
+        methodists: users.filter(u => u.role === "METHODIST").length,
         teachers: users.filter(u => u.role === "TEACHER").length,
         students: users.filter(u => u.role === "STUDENT").length,
     };
@@ -141,6 +142,10 @@ function Inner() {
                 <div className="users-stat users-stat-admin" onClick={() => setFilterRole("ADMIN")}>
                     <div className="users-stat-value">{stats.admins}</div>
                     <div className="users-stat-label">Админов</div>
+                </div>
+                <div className="users-stat users-stat-methodist" onClick={() => setFilterRole("METHODIST")}>
+                    <div className="users-stat-value">{stats.methodists}</div>
+                    <div className="users-stat-label">Методистов</div>
                 </div>
                 <div className="users-stat users-stat-teacher" onClick={() => setFilterRole("TEACHER")}>
                     <div className="users-stat-value">{stats.teachers}</div>
@@ -182,10 +187,11 @@ function Inner() {
                         <select
                             className="input"
                             value={role}
-                            onChange={(e) => setRole(e.target.value as "ADMIN" | "TEACHER" | "STUDENT")}
+                            onChange={(e) => setRole(e.target.value as "ADMIN" | "METHODIST" | "TEACHER" | "STUDENT")}
                         >
                             <option value="STUDENT">👨‍🎓 Студент</option>
                             <option value="TEACHER">👨‍🏫 Преподаватель</option>
+                            <option value="METHODIST">📋 Методист</option>
                             <option value="ADMIN">👑 Администратор</option>
                         </select>
                     </div>
@@ -246,6 +252,7 @@ function Inner() {
                                         <td>
                                             <span className={`role-badge role-${user.role.toLowerCase()}`}>
                                                 {user.role === "ADMIN" && "👑 "}
+                                                {user.role === "METHODIST" && "📋 "}
                                                 {user.role === "TEACHER" && "👨‍🏫 "}
                                                 {user.role === "STUDENT" && "👨‍🎓 "}
                                                 {USER_ROLE_LABELS[user.role]}

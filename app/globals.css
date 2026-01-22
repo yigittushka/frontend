@@ -2598,6 +2598,11 @@ textarea {
     background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
 }
 
+.users-stat-methodist {
+    border-color: #1967d2;
+    background: linear-gradient(135deg, #e8f4fd 0%, #e8f0fe 100%);
+}
+
 .users-stat-teacher {
     border-color: #17a2b8;
     background: linear-gradient(135deg, #e8f7f9 0%, #d1ecf1 100%);
@@ -2715,6 +2720,11 @@ textarea {
     color: #856404;
 }
 
+.role-methodist {
+    background: #e8f0fe;
+    color: #1967d2;
+}
+
 .role-teacher {
     background: #d1ecf1;
     color: #0c5460;
@@ -2818,5 +2828,223 @@ textarea {
         max-width: 100%;
         border-radius: 16px 16px 0 0;
         max-height: 95vh;
+    }
+}
+
+/* ========================================
+   BATCH LESSON CREATION STYLES
+   ======================================== */
+
+/* Mode toggle (single/batch) */
+.mode-toggle {
+    display: flex;
+    gap: 4px;
+    background: #f0f0f0;
+    padding: 4px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.mode-toggle-btn {
+    flex: 1;
+    padding: 10px 20px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    transition: all 0.2s ease;
+}
+
+.mode-toggle-btn:hover {
+    background: #e0e0e0;
+}
+
+.mode-toggle-btn.active {
+    background: white;
+    color: #333;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Batch settings section */
+.batch-settings {
+    background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+    border: 1px solid #e0e5f0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.batch-settings-title {
+    margin: 0 0 16px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #444;
+}
+
+/* Repeat pattern options */
+.repeat-pattern-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.repeat-pattern-option {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 16px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.repeat-pattern-option:hover {
+    border-color: #667eea;
+    background: #fafbff;
+}
+
+.repeat-pattern-option.active {
+    border-color: #667eea;
+    background: linear-gradient(135deg, #f0f4ff 0%, #e8ecff 100%);
+}
+
+.repeat-pattern-option input[type="radio"] {
+    display: none;
+}
+
+.repeat-pattern-label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 2px;
+}
+
+.repeat-pattern-desc {
+    font-size: 12px;
+    color: #888;
+}
+
+.form-hint {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+}
+
+/* Batch preview */
+.batch-preview {
+    background: white;
+    border: 1px solid #e0e5f0;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.batch-preview-title {
+    margin: 0 0 12px 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.batch-preview-conflicts {
+    font-size: 13px;
+    font-weight: 500;
+    color: #e67700;
+    background: #fff4e6;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+.batch-preview-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.batch-preview-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 14px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 3px solid #4caf50;
+}
+
+.batch-preview-item.has-conflict {
+    background: #fff8e6;
+    border-left-color: #e67700;
+}
+
+.batch-preview-item.created {
+    background: #e8f5e9;
+    border-left-color: #2e7d32;
+}
+
+.batch-preview-date {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.batch-preview-weekday {
+    font-weight: 600;
+    color: #333;
+    min-width: 100px;
+}
+
+.batch-preview-datestr {
+    color: #555;
+    font-family: monospace;
+}
+
+.batch-preview-week {
+    color: #888;
+    font-size: 12px;
+    background: #e9ecef;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.batch-preview-conflicts-list {
+    padding-left: 112px;
+}
+
+.batch-preview-conflict {
+    font-size: 12px;
+    color: #b45309;
+}
+
+.batch-preview-created {
+    font-size: 12px;
+    color: #2e7d32;
+    font-weight: 500;
+}
+
+/* Responsive batch styles */
+@media (max-width: 768px) {
+    .repeat-pattern-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .batch-preview-date {
+        flex-wrap: wrap;
+    }
+    
+    .batch-preview-weekday {
+        min-width: auto;
+    }
+    
+    .batch-preview-conflicts-list {
+        padding-left: 0;
     }
 }

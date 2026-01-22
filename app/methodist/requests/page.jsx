@@ -5,15 +5,15 @@ import AuthGuard from "../../../src/components/AuthGuard";
 import { useAuth } from "../../../src/components/AuthProvider";
 import { apiFetch } from "../../../src/lib/api";
 
-export default function AdminRequestsPage() {
+export default function MethodistRequestsPage() {
     return (
-        <AuthGuard roles={["ADMIN"]}>
-            <AdminRequestsInner />
+        <AuthGuard roles={["METHODIST"]}>
+            <MethodistRequestsInner />
         </AuthGuard>
     );
 }
 
-function AdminRequestsInner() {
+function MethodistRequestsInner() {
     const { token } = useAuth();
 
     const [requests, setRequests] = useState([]);

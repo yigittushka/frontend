@@ -26,8 +26,8 @@ import {
 } from "../../../src/lib/constants";
 import { Breadcrumbs, StatusFilter } from "../../../src/components/ui";
 
-export default function AdminSchedulesPage() {
-    return <AuthGuard roles={["ADMIN"]}><Inner /></AuthGuard>;
+export default function MethodistSchedulesPage() {
+    return <AuthGuard roles={["METHODIST"]}><Inner /></AuthGuard>;
 }
 
 function Inner() {
@@ -205,7 +205,7 @@ function Inner() {
         <div className="page-container">
             <Breadcrumbs items={[
                 { label: "Главная", href: "/" },
-                { label: "Админ" },
+                { label: "Методист" },
                 { label: "Расписание" }
             ]} />
             

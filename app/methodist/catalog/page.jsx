@@ -71,9 +71,9 @@ const ENTITIES = {
     },
 };
 
-export default function AdminCatalogPage() {
+export default function MethodistCatalogPage() {
     return (
-        <AuthGuard roles={["ADMIN"]}>
+        <AuthGuard roles={["METHODIST"]}>
             <CatalogPageInner />
         </AuthGuard>
     );
@@ -225,7 +225,7 @@ function CatalogPageInner() {
         <div className="page-container">
             <Breadcrumbs items={[
                 { label: "Главная", href: "/" },
-                { label: "Админ" },
+                { label: "Методист" },
                 { label: "Справочники", href: selectedEntity ? "/admin/catalog" : undefined },
                 ...(selectedEntity ? [{ label: entityConfig.title }] : [])
             ]} />
