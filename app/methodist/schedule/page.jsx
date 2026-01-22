@@ -27,7 +27,7 @@ const REPEAT_PATTERNS = [
 
 export default function MethodistSchedulePage() {
     return (
-        <AuthGuard roles={["METHODIST"]}>
+        <AuthGuard roles={["ADMIN", "METHODIST"]}>
             <MethodistScheduleInner />
         </AuthGuard>
     );

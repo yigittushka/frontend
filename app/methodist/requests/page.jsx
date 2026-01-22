@@ -7,7 +7,7 @@ import { apiFetch } from "../../../src/lib/api";
 
 export default function MethodistRequestsPage() {
     return (
-        <AuthGuard roles={["METHODIST"]}>
+        <AuthGuard roles={["ADMIN", "METHODIST"]}>
             <MethodistRequestsInner />
         </AuthGuard>
     );

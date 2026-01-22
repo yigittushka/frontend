@@ -17,7 +17,7 @@ import { Breadcrumbs } from "../../../src/components/ui";
 
 export default function MethodistRoomsPage() {
     return (
-        <AuthGuard roles={["METHODIST"]}>
+        <AuthGuard roles={["ADMIN", "METHODIST"]}>
             <RoomsAvailabilityInner />
         </AuthGuard>
     );

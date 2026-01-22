@@ -9,6 +9,16 @@ const nextConfig = {
             { source: "/api/:path*", destination: `${backendUrl}/api/:path*` },
         ];
     },
+    async redirects() {
+        return [
+            // Редиректы со старых admin путей на methodist
+            { source: '/admin/catalog', destination: '/methodist/catalog', permanent: true },
+            { source: '/admin/schedule', destination: '/methodist/schedule', permanent: true },
+            { source: '/admin/schedules', destination: '/methodist/schedules', permanent: true },
+            { source: '/admin/rooms', destination: '/methodist/rooms', permanent: true },
+            { source: '/admin/requests', destination: '/methodist/requests', permanent: true },
+        ];
+    },
 };
 
 module.exports = nextConfig;

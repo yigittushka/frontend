@@ -87,12 +87,14 @@ export const ROUTES = {
     LOGIN: "/login",
     MY_SCHEDULE: "/my",
     ADMIN: {
-        CATALOG: "/admin/catalog",
-        SCHEDULE: "/admin/schedule",
-        SCHEDULES: "/admin/schedules",
-        ROOMS: "/admin/rooms",
         USERS: "/admin/users",
-        REQUESTS: "/admin/requests",
+    },
+    METHODIST: {
+        CATALOG: "/methodist/catalog",
+        SCHEDULE: "/methodist/schedule",
+        SCHEDULES: "/methodist/schedules",
+        ROOMS: "/methodist/rooms",
+        REQUESTS: "/methodist/requests",
     },
     TEACHER: {
         REQUESTS: "/teacher/requests",

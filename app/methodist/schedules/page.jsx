@@ -27,7 +27,7 @@ import {
 import { Breadcrumbs, StatusFilter } from "../../../src/components/ui";
 
 export default function MethodistSchedulesPage() {
-    return <AuthGuard roles={["METHODIST"]}><Inner /></AuthGuard>;
+    return <AuthGuard roles={["ADMIN", "METHODIST"]}><Inner /></AuthGuard>;
 }
 
 function Inner() {

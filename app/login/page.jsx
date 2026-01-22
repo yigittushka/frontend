@@ -29,8 +29,9 @@ export default function LoginPage() {
             
             login(res.accessToken);
 
-            
-            if (res.role === "ADMIN") router.replace("/admin/catalog");
+            // Редирект в зависимости от роли
+            if (res.role === "ADMIN") router.replace("/methodist/schedules");
+            else if (res.role === "METHODIST") router.replace("/methodist/schedules");
             else router.replace("/my");
         } catch (e2) {
             setErr(e2.message || "Ошибка входа");
@@ -68,9 +69,6 @@ export default function LoginPage() {
                 {err && <div className="error">{err}</div>}
             </form>
 
-            <div className="muted" style={{ marginTop: 10 }}>
-                Backend должен быть запущен на <b>localhost:8080</b>
-            </div>
         </div>
     );
 }
